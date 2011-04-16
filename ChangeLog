@@ -1,0 +1,1338 @@
+2007-09-27 18:16  Willy Sudiarto Raharjo <willysr at gmail.com>
+
+	* po/id.po: Updated Indonesian Translations
+
+2007-09-27 13:19  anssi
+
+	* po/fi.po: update Finnish translation
+
+2007-09-26 12:31  guclu
+
+	* po/tr.po: update translation for Turkish
+
+2007-09-21 19:05  Shiva Huang <blueshiva at giga.net.tw>
+
+	* po/zh_TW.po: updated po file
+
+2007-09-14 12:03  Per Øyvind Karlsen <peroyvind at mandriva.org>
+
+	* po/nb.po: update with new translations
+
+2007-09-03 12:54  Сергій Рибалченко (Sergey Ribalchenko) <fisher at obu.ck.ua>
+
+	* po/uk.po: tr-ion update
+
+2007-09-01 18:00  Sharuzzaman Ahmat Raslan <sharuzzaman at myrealbox.com>
+
+	* po/ms.po: Updated Malay translation
+
+2007-08-25 11:16  Funda Wang <fundawang at linux.net.cn>
+
+	* scripts/splash.sh: uming fits well against current theme
+
+2007-08-08 11:41  Inigo Salvador Azurmendi <xalba at euskalnet.net>
+
+	* po/eu.po: update translation for basque (euskara)
+
+2007-08-08 01:30  Inigo Salvador Azurmendi <xalba at euskalnet.net>
+
+	* po/eu.po: update translation for basque (euskara)
+
+2007-06-16 13:49  Pavel Maryanov <acid_jack at ukr.net>
+
+	* po/ru.po: updated translation
+
+2007-05-21 13:50  felipe
+
+	* po/pt_BR.po: fixing a fuzzy entry
+
+2007-05-09 22:15  Herton Ronaldo Krzesinski <herton at mandriva.com>
+
+	* scripts/splash.sh: - Revert last commit (see bugzilla tickets
+	  #27663 and #30715).
+
+2007-05-09 20:01  Herton Ronaldo Krzesinski <herton at mandriva.com>
+
+	* scripts/splash.sh: fix shutdown message only in english, used
+	  patch from Flavio Bruno
+	  Leitner, reported on #27663
+
+2006-04-10 17:54  Warly <warly at mandriva.com>
+
+	* bootsplash.spec, scripts/make-boot-splash,
+	  scripts/remove-boot-splash: handle initramfs initrd in
+	  make-boot-splash and remove-boot-splash
+
+2006-03-06 07:31  Shiva Huang <blueshiva at giga.net.tw>
+
+	* po/zh_TW.po: updated po file
+
+2005-12-12 01:06  Pablo Saratxaga <pablo at mandriva.com>
+
+	* scripts/splash.sh: - added the posibility to define a custom font
+	  in the   config file (FONT=/path/font.ttf) - enabled punjabi
+	  translation as now we ship a gurmukhi font
+
+2005-11-27 07:44  Funda Wang <fundawang at linux.net.cn>
+
+	* scripts/splash.sh: Updated default chinese font.
+
+2005-10-24 02:46  Willy Sudiarto Raharjo <willysr at gmail.com>
+
+	* po/id.po: Updated Contact Info
+
+2005-10-12 09:54  Pablo Saratxaga <pablo at mandriva.com>
+
+	* po/: hi.po, ku.po: updated po files
+
+2005-09-26 16:19  Tomasz Bednarski <tbednarski at mandrivalinux.pl>
+
+	* po/pl.po: Some translations corrections
+
+2005-09-16 21:45  Pablo Saratxaga <pablo at mandriva.com>
+
+	* po/sc.po: updated po file
+
+2005-09-16 10:52  Pixel <pixel at mandriva.com>
+
+	* bootsplash.spec: warly has committed... so changing the release
+	  number
+
+2005-09-15 22:53  Warly <warly at mandriva.com>
+
+	* bootsplash.spec, scripts/make-boot-splash, scripts/switch-themes:
+	  remove some last mandrake
+
+2005-09-15 22:20  Pixel <pixel at mandriva.com>
+
+	* bootsplash.spec, scripts/remove-theme: fix upgrading
+	  mandrakelinux-theme to mandriva-theme by patching remove-theme
+	  ("remove-theme Mandrakelinux" from the preun of
+	  mandrakelinux-theme	 will be called after the switch-theme from
+	  the post of mandriva-theme)	this also implies mandriva-theme
+	  prereq this bootsplash
+
+	  nb: this whole mess is caused by preun of mandrakelinux-theme
+	  being called with "$1" = 0	 because of the package name change
+
+2005-09-13 09:46  shivahuang
+
+	* po/zh_TW.po: updated po file
+
+2005-08-16 10:53  Pablo Saratxaga <pablo at mandriva.com>
+
+	* scripts/splash.sh: added Kazakh (kk) to the list
+
+2005-08-13 16:58  Thierry Vignaud <tvignaud at mandriva.com>
+
+	* po/: uz.po, uz@Latn.po: update uzbek translation (Mashrab
+	  Kuvatov)
+
+2005-08-11 03:16  Pixel <pixel at mandriva.com>
+
+	* bootsplash.spec: commit Nicolas Lécureuil's changes
+
+2005-08-04 03:33  Сергій Рибалченко (Sergey Ribalchenko) <fisher at obu.ck.ua>
+
+	* po/uk.po: header correction in uk.po
+
+2005-08-02 02:56  Сергій Рибалченко (Sergey Ribalchenko) <fisher at obu.ck.ua>
+
+	* po/uk.po: nevermind;
+
+2005-07-18 16:55  Olivier Blin <oblin at mandriva.com>
+
+	* scripts/make-boot-splash: fix typo
+
+2005-06-24 09:45  Pixel <pixel at mandriva.com>
+
+	* scripts/remove-theme: look for bootloader-config where it really
+	  is (bugzilla #16568)
+
+2005-06-01 07:39  Willy Sudiarto Raharjo <willysr at gmail.com>
+
+	* po/id.po: Updated
+
+2005-05-31 10:09  Willy Sudiarto Raharjo <willysr at gmail.com>
+
+	* po/id.po: Updated
+
+2005-04-07 13:13  Warly <warly at mandriva.com>
+
+	* bootsplash.spec, fb/fbmenu.c: fix text mode
+
+2005-04-06 16:54  Warly <warly at mandriva.com>
+
+	* bootsplash.spec, fb/fbmenu.c: fbmenu checks for several similar
+	  entries
+
+2005-04-01 14:47  Olivier Blin <oblin at mandrakesoft.com>
+
+	* bootsplash.spec: remove Prefix tag
+
+2005-04-01 14:35  Olivier Blin <oblin at mandrakesoft.com>
+
+	* bootsplash.spec: 3.1.6-1mdk
+
+2005-04-01 14:10  Olivier Blin <oblin at mandrakesoft.com>
+
+	* fb/fbmenu.c: fix typo and remove unused variable
+
+2005-04-01 14:08  Olivier Blin <oblin at mandrakesoft.com>
+
+	* fb/fbmenu.c: fix last compilation warning
+
+2005-04-01 14:06  Olivier Blin <oblin at mandrakesoft.com>
+
+	* fb/fbmenu.c: really try to get resolution from /dev/fb0
+
+2005-04-01 14:00  Olivier Blin <oblin at mandrakesoft.com>
+
+	* fb/fbmenu.c: remove compilation warnings
+
+2005-03-31 14:27  Pablo Saratxaga <pablo at mandrakesoft.com>
+
+	* po/lt.po: Added Lithuanian file
+
+2005-03-29 17:58  Pablo Saratxaga <pablo at mandrakesoft.com>
+
+	* po/: ar.hack, pa_IN.po: updated po files
+
+2005-03-22 12:38  Warly <warly at mandrakesoft.com>
+
+	* bootsplash.spec, fb/Makefile, scripts/bootanim: fix fbmenu
+	  compilation
+
+2005-03-10 17:28  Warly <warly at mandrakesoft.com>
+
+	* bootsplash.spec, fb/Makefile: 3.1.3
+
+2005-03-01 00:07  Youcef Rabah Rahal <rahal@arabeyes.org>
+
+	* po/ar.po: Arabic QA
+
+2005-02-23 14:37  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/pa_IN.po: Added Punjabi file (but not used yet, as we don't
+	  have need ttf font)
+
+2005-02-23 11:28  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* fb/Makefile: factor out gtk+-2.0 cflags, thus also fixing build
+	  on lib64 platforms (modulo fbmenu)
+
+2005-02-23 11:21  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, fb/fbmenu.c: include fbmenu
+
+2005-02-16 17:51  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, fb/Makefile, scripts/Makefile, scripts/bootanim:
+	  add last beta 2 changes for animations and fbmenu
+
+2005-02-15 15:33  willysr
+
+	* po/id.po: Updated
+
+2005-02-08 21:05  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* bootsplash.spec: updated spec file for build
+
+2005-02-08 21:01  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: checked default fonts for upcoming languages
+
+2005-02-08 20:35  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ja.po: updated po file
+
+2005-02-07 17:14  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: fixed Japanese font bug (with sizes smaller
+	  than 20 sazanami-ghotic displays garbage (probably problem with
+	  handling of embedded bitmap glyphs)); use New Sung font for
+	  Chinese
+
+2005-02-07 16:18  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/mk.po: updated po file
+
+2005-02-06 22:11  mareklaane
+
+	* po/et.po: More translation fixes.
+
+2005-01-24 18:41  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/tl.po: updated po file
+
+2005-01-06 17:19  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/eu.po: updated po file
+
+2005-01-05 00:13  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hr.po: updated po file
+
+2005-01-03 13:33  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/cy.po: updated po file
+
+2005-01-03 09:07  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/lo.po: Added Laotian file
+
+2004-11-22 13:34  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ku.po: updated po file
+
+2004-11-08 09:24  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/as.po: Added Assamese file
+
+2004-10-06 11:13  José JORGE <jjorge@free.fr>
+
+	* po/pt.po: melo e saraiva
+
+2004-10-06 10:16  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/th.po: Added Thai file
+
+2004-09-30 12:17  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* bootsplash.spec, fbtruetype/ttf.c, scripts/splash.sh: - enabled
+	  back use of UTF-8 for fbtruetype - checked and improved the fonts
+	  to use for the various languages
+
+2004-09-30 12:16  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ur.hack: fix for urdu hack po file
+
+2004-09-29 11:59  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/id.po: updated po file
+
+2004-09-27 11:55  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hr.po: Added Croatian file
+
+2004-09-18 06:31  José JORGE <jjorge@free.fr>
+
+	* po/pt.po: melo
+
+2004-09-16 08:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/id.po: added Indonesian file
+
+2004-09-13 02:48  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: fixed font use to match what we provide in
+	  10.1
+
+2004-09-10 08:41  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: 2.0.12
+
+2004-09-10 08:38  Warly <warly@mandrakesoft.com>
+
+	* scripts/splash.sh: Do not redraw the screen if we are not in
+	  splash mode when rc starts.
+
+2004-09-09 05:52  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: br.po, cy.po, es.po, fr.po, fur.po, it.po, wa.po, zh_CN.po:
+	  some Mandrake -> Mandrakelinux and MandrakeSoft -> Mandrakesoft
+	  fixes
+
+2004-09-08 06:09  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, fbmngplay/Makefile, scripts/remove-theme:
+	  remove-theme does not require an argument anymore
+
+2004-09-05 17:15  reinouts
+
+	* po/nl.po: Updated Dutch (nl) translation by Rob Teng
+	  <mandrake.tips@free.fr>
+
+2004-08-31 10:37  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/splash.sh: Reset the screen if non
+	  latin1 font is used with /usr on a separate partition
+
+2004-08-11 14:38  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ca.po, po/es.po, po/fa.po, po/he.po, po/sk.po, po/ta.po,
+	  po/ur.po, scripts/splash.sh: default locale should be defined by
+	  environment
+
+2004-07-17 06:58  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* fbtruetype/ttf.c: make fbtruetype use UTF-8 to handle text
+
+2004-07-16 10:38  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: fix displaying of UTF-8 mo files
+
+2004-07-01 07:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ur.hack: Added Urdu file
+
+2004-07-01 06:29  oblin
+
+	* bootsplash.spec: 2.1.8
+
+2004-07-01 06:25  oblin
+
+	* Makefile: use --accum for cvs2cl (thanks Thierry)
+
+2004-06-30 11:57  Olivier Blin <oblin@mandrakesoft.com>
+
+	* scripts/make-boot-splash: fix remove-boot-splash path
+
+2004-06-30 11:50  Olivier Blin <oblin@mandrakesoft.com>
+
+	* scripts/switch-themes: fix bootloader-config path
+
+2004-06-30 01:34  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ur.po: Added Urdu file
+
+2004-06-29 06:54  Pixel <pixel@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/Makefile, scripts/detect-resolution,
+	  scripts/make-boot-splash, scripts/remove-boot-splash,
+	  scripts/remove-theme, scripts/switch-themes: - add
+	  scripts/remove-boot-splash so we can modify a bootsplash   from
+	  an initrd without having to rebuild it - make-boot-splash doesn't
+	  try to detect the resolution anymore,   it now needs to be given
+	  one - in switch-themes and remove-theme, use bootloader-config to
+	  update the bootloader - remove detect-resolution - requires new
+	  mkinitrd (old mkinitrd used detect-resolution) - remove "Patch:
+	  glibc-fixed-header.tar.bz2" which is unused (and not in CVS)
+
+2004-06-21 17:20  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/bn.po: Added Bengali file
+
+2004-06-18 16:48  tsdgeos
+
+	* po/ca.po: typos
+
+2004-06-11 16:43  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/sc.po: Added Sardinian file
+
+2004-05-26 09:22  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/am.po: updated po file
+
+2004-05-26 00:33  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/am.po: Added Amharic file
+
+2004-05-18 22:54  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/pt_BR.po: converted to UTF-8
+
+2004-05-18 22:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/fur.po: updated po file
+
+2004-05-12 13:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/fur.po: updated po file
+
+2004-05-03 20:56  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/fur.po, scripts/splash.sh: Added Furlan files
+
+2004-04-23 14:54  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/gl.po: updated po file
+
+2004-04-22 15:54  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ka.po: Added Georgian file
+
+2004-04-19 13:38  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/eo.po: Added Esperanto file
+
+2004-04-14 11:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/gl.po: Added Galician file
+
+2004-03-28 21:18  drdrake
+
+	* po/he.po: [no log message]
+
+2004-03-25 09:02  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/he.hack: corrected typo
+
+2004-03-22 10:39  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/mk.po: Added Macedonian file
+
+2004-03-20 15:33  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ky.po, scripts/splash.sh: Added Kyrgyz file
+
+2004-03-19 15:03  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/detect-resolution: add Olivier Blin
+	  fixes to handle symbolic links into detec-resolution
+
+2004-03-13 22:48  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hy.po: updated po file
+
+2004-03-13 21:58  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hy.po: Added Armenian file
+
+2004-03-04 20:02  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: hi.hack, ta.hack: put modified versions, that work better
+	  with the fonts for a visual output
+
+2004-03-04 18:48  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ta.po: Added Tamil file
+
+2004-02-28 18:34  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/bs.po: updated po file
+
+2004-02-24 20:13  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/tr.po: updated po file
+
+2004-02-24 20:12  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: create the dir in %install
+
+2004-02-24 18:56  oblin
+
+	* bootsplash.spec: DIRM
+
+2004-02-22 02:18  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: he.hack, he.po: updated po file
+
+2004-02-20 20:53  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ku.po: Added Kurdish file
+
+2004-02-20 19:31  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/tl.po, scripts/splash.sh: Added Filipino translation
+
+2004-02-20 15:34  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: fix for cases when LANGUAGE variable is a list
+	  of values (bug #6918)
+
+2004-02-16 02:30  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ltg.po: Added Latgalian file
+
+2004-02-11 22:16  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/cy.po: updated po file
+
+2004-02-10 18:09  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: fix detect-resolution output to work with
+	  drakboot
+
+2004-02-10 12:18  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: some more language -> font definitions
+
+2004-02-10 11:53  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/sl.po: updated po file
+
+2004-02-06 17:00  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: fa.hack, fa.po: updated Farsi file
+
+2004-02-06 15:39  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: changes to fix fonts during boot
+
+2004-02-06 15:07  Warly <warly@mandrakesoft.com>
+
+	* scripts/: detect-resolution, remove-theme, switch-themes: Apply
+	  Olivier Blin patches for a better THEME= handling.  Apply Olivier
+	  Blin patch to support quote in lilo names
+
+2004-02-06 11:47  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/nn.po: Added Nynorsk file
+
+2004-02-05 22:02  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: sr.po, sr@Latn.po: Added Serbian files
+
+2004-02-05 21:22  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/uk.po: updated po file
+
+2004-02-02 16:36  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/sl.po: updated po file
+
+2004-02-02 14:42  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: uz.po, uz@Latn.po: updated Uzbek files
+
+2004-02-02 14:42  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: uz@Cyrl.po, uz@Latn.po: changed Uzbek to default to Cyrillic
+
+2004-01-21 21:44  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: revert ttf.c to fix accent pb during boot
+
+2004-01-21 18:06  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, fbmngplay/Makefile, fbmngplay/fbmngplay.c,
+	  fbmngplay/fbmngplay.h, scripts/splash.sh: update code from
+	  bootsplash.org fix build with new 2.6 kernel header add blino
+	  patches to have a more correct THEME env var handling
+
+2004-01-21 17:42  Warly <warly@mandrakesoft.com>
+
+	* fbtruetype/: Makefile, console.c, fbtruetype-messages.c,
+	  fbtruetype.c, fbtruetype.h, ttf.c, ttf.h: sync with
+	  bootsplash.org code. fix freetype build
+
+2004-01-15 18:57  Thierry Vignaud <tvignaud@mandrakesoft.com>
+
+	* po/br.po: initial import
+
+2004-01-09 18:25  Warly <warly@mandrakesoft.com>
+
+	* scripts/detect-resolution: tighten grub loader vga= detection
+	  (thanks to Michael Reinsch)
+
+2004-01-08 19:00  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: include spec file from bootsplash of blino
+
+2004-01-05 15:34  Pixel <pixel@mandrakesoft.com>
+
+	* fb/.cvsignore, fbmngplay/.cvsignore, fbtruetype/.cvsignore,
+	  po/.cvsignore: add .cvsignore files
+
+2004-01-05 15:29  Warly <warly@mandrakesoft.com>
+
+	* splash/: Makefile, splash.c: add splash dir
+
+2004-01-05 15:25  Pixel <pixel@mandrakesoft.com>
+
+	* fbtruetype/ttf.c: fix build
+
+2004-01-05 15:15  Pixel <pixel@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/make-boot-splash: make-boot-splash:
+	  don't run switch-themes DURING_INSTALL
+
+2004-01-02 17:26  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/mn.po: Added Mongolian file
+
+2003-12-16 15:31  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/cy.po: updated po file
+
+2003-12-11 14:28  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/fi.po: updated po file
+
+2003-12-02 16:08  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: el.po, ja.po: Added Japanese and Greek files
+
+2003-11-18 11:06  Warly <warly@mandrakesoft.com>
+
+	* scripts/detect-resolution: stupid undef of vga at the wrong place
+
+2003-11-18 10:28  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/detect-resolution,
+	  scripts/make-boot-splash, scripts/rewritejpeg: rely on initrd
+	  file to find correct bootloader entry and resolution in
+	  detect-resolution correctly rewrite gray scaled jpeg
+
+2003-10-26 23:34  Arkadiusz Lipiec <alipiec@elka.pw.edu.pl>
+
+	* po/pl.po: Update fix
+
+2003-10-09 11:17  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/zh_TW.po: Added po file
+
+2003-09-21 18:03  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, fb/Makefile: fix make clean in fb/
+
+2003-09-19 12:34  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/remove-theme: fix typo in fr.po
+
+2003-09-19 11:02  Warly <warly@mandrakesoft.com>
+
+	* po/fr.po: arret/arrêt
+
+2003-09-17 22:08  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: fixed typo (due to typo, the Japanese font
+	  size wasn't corrected, and output was mangled in Japanese
+
+2003-09-15 17:51  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/is.po: Added Icelandic file
+
+2003-09-14 11:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/pt_BR.po: updated po file
+
+2003-09-10 11:12  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/mt.po: Added Maltese file
+
+2003-09-05 18:37  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* bootsplash.spec: lib64 & 64-bit fixes
+
+2003-09-05 18:36  Warly <warly@mandrakesoft.com>
+
+	* fbmngplay/mng.c, fbmngplay/mng.h, scripts/splash.sh: Apply 64bit
+	  patches from gb
+
+2003-09-04 20:42  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/detect-resolution, scripts/splash.sh,
+	  scripts/switch-themes: fix bad theme initialization if no theme
+	  defined 2.0.3 add grub resolution detection in detect-resolution
+	  try to fix i18n pb in splash.sh
+
+2003-09-03 18:29  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* scripts/splash.sh: fixed use of OUTPUT_CHARSET=UTF-8
+
+2003-09-01 13:57  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/az.po: updated po file
+
+2003-08-30 12:57  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/vi.po: updated po file
+
+2003-08-27 16:49  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/sl.po: Added Slovenian file
+
+2003-08-27 15:26  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hi.po: updated po file
+
+2003-08-27 01:44  Fabian Mandelbaum <fabman@mandrakesoft.com>
+
+	* po/es.po: Added Spanish translation file
+
+2003-08-26 21:42  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: af.po, cy.po: Added Welsh and Afrikaans files
+
+2003-08-26 17:18  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/splash.sh, scripts/switch-themes: fix
+	  switch-themes to correctly set lilo message
+
+2003-08-26 15:42  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: ar.hack, ca.po, de.po, et.po, he.hack, hi.po, it.po, nb.po,
+	  tg.po: Added Catalan, Italian and Tajik files
+
+2003-08-26 13:06  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, po/ar.po, po/az.po, po/bg.po,
+	  po/bootsplash.pot, po/bs.po, po/cs.po, po/da.po, po/de.po,
+	  po/et.po, po/eu.po, po/fa.hack, po/fa.po, po/fi.po, po/fr.po,
+	  po/he.po, po/hi.po, po/hu.po, po/lv.po, po/ms.po, po/nl.po,
+	  po/pl.po, po/pt.po, po/pt_BR.po, po/ro.po, po/ru.po, po/sk.po,
+	  po/sq.po, po/sv.po, po/tr.po, po/uk.po, po/uz.po, po/uz@Cyrl.po,
+	  po/vi.po, po/wa.po, po/zh_CN.po, scripts/Makefile,
+	  scripts/bootsplash.sysconfig, scripts/splash.sh,
+	  scripts/switch-themes: set Esc as the key to swich to verbose
+	  mode improve switch-theme so that it can be used in post of
+	  mandrake_theme packages remove images and config files
+
+2003-08-24 13:52  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/uk.po: Added Ukrainian file
+
+2003-08-23 12:18  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/az.po: Added Azeri file
+
+2003-08-20 20:52  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ms.po: Added Malay file
+
+2003-08-20 20:29  tpittich
+
+	* po/sk.po: improved description of slovak translation
+
+2003-08-20 20:26  tpittich
+
+	* po/sk.po: initial slovak translation
+
+2003-08-20 06:57  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: da.po, tr.po: Added Turkish file
+
+2003-08-20 00:24  Keld Jørn Simonsen <keld@dkuug.dk>
+
+	* po/da.po: updates soft/rpmdrake/po/da.po
+	  gi/perl-install/share/po/da.po soft/bootsplash/po/da.po
+
+2003-08-19 18:58  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/de.po: Added German file
+
+2003-08-19 09:40  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/fi.po: Added Finnish file
+
+2003-08-18 16:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/Makefile, po/ar.hack, po/fa.hack, po/he.hack,
+	  scripts/splash.sh: some more i18n changes (create pre-ordered and
+	  pre-shaped texts for bidi languages; and fixed some font size
+	  problems)
+
+2003-08-18 12:09  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: ar.po, bootsplash.pot, cs.po, et.po, eu.po, ro.po, uz.po,
+	  uz@Cyrl.po, vi.po, xgettext_sh.py: Added Basque, Romanian and
+	  Uzbek files
+
+2003-08-17 19:22  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: ar.po, bg.po, bootsplash.pot, bs.po, cs.po, et.po, fa.po,
+	  fr.po, he.po, hi.po, hu.po, lv.po, nb.po, nl.po, pl.po, pt.po,
+	  pt_BR.po, ru.po, sq.po, sv.po, vi.po, wa.po, xgettext_sh.py,
+	  zh_CN.po: Added Vietnamese file; removed the useless msgid lines
+	  in the pot file
+
+2003-08-17 12:28  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: he.po, pt_BR.po: Added Hebrew and Brazilian files
+
+2003-08-16 23:58  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* bootsplash.spec, fbtruetype/ttf.c, scripts/splash.sh: Added real
+	  i18n support (different fonts possible, depending on language)
+
+2003-08-16 21:43  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hi.po: Added Hindi file
+
+2003-08-16 11:24  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/ar.po: updated po file
+
+2003-08-16 11:21  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: nl.po, pt.po, sq.po: Added po files
+
+2003-08-15 10:31  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/zh_CN.po: updated po file
+
+2003-08-14 01:19  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: bs.po, fa.po, lv.po, pl.po: Added various po files
+
+2003-08-13 15:28  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/bg.po: Added Bulgarian file
+
+2003-08-13 05:04  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/zh_CN.po: Added Chinese file
+
+2003-08-13 03:00  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/sv.po: updated po file
+
+2003-08-12 20:04   Alice Lafox
+
+	* po/ru.po: added&translated ru file
+
+2003-08-12 17:08  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hu.po: updated po file
+
+2003-08-12 17:07  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/hu.po: Added Hungarian file
+
+2003-08-12 11:29  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/cs.po: Added Czech file
+
+2003-08-12 11:15  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: Makefile, bootsplash.pot, et.po, fr.po, nb.po, wa.po,
+	  xgettext_sh.py: updated pot file; fixed the generation of the pot
+	  file
+
+2003-08-12 10:33  Warly <warly@mandrakesoft.com>
+
+	* po/: Makefile, bootsplash.pot: remove echo"silent" from pot
+
+2003-08-12 10:22  Warly <warly@mandrakesoft.com>
+
+	* fbmngplay/Makefile, fbmngplay/README, fbmngplay/console.c,
+	  fbmngplay/console.h, fbmngplay/fbmngplay.c,
+	  fbmngplay/fbmngplay.h, fbmngplay/messages.c,
+	  fbmngplay/messages.h, fbmngplay/mng.c, fbmngplay/mng.h,
+	  fbtruetype/Makefile, fbtruetype/README, fbtruetype/console.c,
+	  fbtruetype/console.h, fbtruetype/fbtruetype.c,
+	  fbtruetype/fbtruetype.h, fbtruetype/luxisri.c,
+	  fbtruetype/luxisri.ttf, fbtruetype/messages.c,
+	  fbtruetype/messages.h, fbtruetype/ttf.c, fbtruetype/ttf.h,
+	  scripts/splash.sh: add fbmngplay and fbtruetype
+
+2003-08-12 09:22  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/nb.po: Added Norwegian file
+
+2003-08-12 09:18  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* po/: fr.po, wa.po: Added Walloon file
+
+2003-08-12 07:57  Warly <warly@mandrakesoft.com>
+
+	* po/: Makefile, bootsplash.pot, fr.po, gprintify.py,
+	  xgettext_sh.py: add po files
+
+2003-08-01 16:00  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: require on initscripts was not correct
+
+2003-08-01 15:42  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/config/Mandrake/cfg/vt0-1024x768.cfg,
+	  themes/config/Mandrake/cfg/vt0-800x600.cfg,
+	  themes/config/Mandrake/cfg/vt1-1024x768.cfg,
+	  themes/config/Mandrake/cfg/vt1-800x600.cfg: some cosmetic changes
+
+2003-07-31 18:48  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-1600x1200.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg: fix images
+	  paths
+
+2003-07-31 16:31  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, scripts/Makefile,
+	  scripts/make-boot-splash, scripts/switch-themes,
+	  themes/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/Mandrake/images/silent-1024x768.jpg,
+	  themes/Mandrake/images/silent-1280x1024.jpg,
+	  themes/Mandrake/images/silent-800x600.jpg,
+	  themes/config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1600x1200.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/config/Mandrake/cfg/vt1-1024x768.cfg,
+	  themes/config/Mandrake/cfg/vt1-800x600.cfg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-1600x1200.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/images/silent-1024x768.jpg,
+	  themes/data/Mandrake/images/silent-1280x1024.jpg,
+	  themes/data/Mandrake/images/silent-800x600.jpg,
+	  themes/data/Mandrake/images/vt-1024x768.jpg,
+	  themes/data/Mandrake/images/vt-800x600.jpg: new bootsplash v3
+	  include various scripts and binaries from bootsplash.org
+
+2003-02-14 17:57  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/bootsplash.sysconfig,
+	  scripts/detect-resolution, scripts/make-boot-splash,
+	  themes/config/Mandrake/cfg/bootsplash-1600x1200.cfg,
+	  themes/data/Mandrake/images/bootsplash-1600x1200.jpg: new
+	  1600x1200 image
+
+2003-01-31 14:47  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/lilo/message: new images
+
+2002-08-08 22:55  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec, scripts/make-boot-splash: add 640x480 resolution
+	  in make-boot-splash
+
+2002-08-02 11:52  David Baudens <baudens@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec: Sync CVS, update images & .spec, fix
+	  make rpm
+
+2002-08-02 11:48  David Baudens <baudens@mandrakesoft.com>
+
+	* themes/: Mandrake/images/bootsplash-1024x768.jpg,
+	  Mandrake/images/bootsplash-1280x1024.jpg,
+	  Mandrake/images/bootsplash-800x600.jpg,
+	  data/Mandrake/images/bootsplash-1024x768.jpg,
+	  data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  data/Mandrake/images/bootsplash-800x600.jpg: Update
+
+2002-08-02 11:39  David Baudens <baudens@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, scripts/detect-resolution,
+	  scripts/make-boot-splash,
+	  themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg: Sync CVS with
+	  sources available in Cooker
+
+2002-08-02 11:20  David Baudens <baudens@mandrakesoft.com>
+
+	* Makefile: Really fix make rpm
+
+2002-08-02 11:19  David Baudens <baudens@mandrakesoft.com>
+
+	* Makefile: Fix make rpm
+
+2002-08-02 11:16  David Baudens <baudens@mandrakesoft.com>
+
+	* themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg,
+	  bootsplash.spec: Update
+
+2002-07-23 14:55  Warly <warly@mandrakesoft.com>
+
+	* themes/: config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  data/Mandrake/images/bootsplash-800x600.jpg: start fix 80 columns
+	  pb
+
+2002-07-21 18:17  Warly <warly@mandrakesoft.com>
+
+	* README, bootsplash.spec, scripts/make-boot-splash,
+	  themes/Mandrake/lilo/message,
+	  themes/config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/lilo/message: new images for 9.0 cp lilo
+	  message in make-boot-splash script
+
+2002-03-15 17:36  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg: fix progress
+	  bar geometry
+
+2002-03-13 23:00  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg: new images
+	  with better shading on progress bar container (Quel Qun) move the
+	  progress bar a pixel to the righ for a better centering in
+	  800x600
+
+2002-03-08 17:02  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg:
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg: adjust
+	  progress bar in 800x600 mode
+
+2002-03-07 23:42  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec,
+	  themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/config/Ayo/global.config,
+	  themes/config/Ayo/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Ayo/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Ayo/cfg/bootsplash-800x600.cfg,
+	  themes/data/Ayo/images/bootsplash-1024x768.jpg,
+	  themes/data/Ayo/images/bootsplash-1280x1024.jpg,
+	  themes/data/Ayo/images/bootsplash-800x600.jpg,
+	  themes/data/Ayo/lilo/message: readd Ayo in a separate package
+
+2002-03-07 22:39  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg: add new
+	  images add initrd rebuilding in post and reinstalling of
+	  lilo/yaboot
+
+2002-03-06 16:47  David Baudens <baudens@mandrakesoft.com>
+
+	* Makefile: Remove non Mandrake's them
+
+2002-03-06 16:39  David Baudens <baudens@mandrakesoft.com>
+
+	* themes/config/Ayo/: global.config, cfg/bootsplash-1024x768.cfg,
+	  cfg/bootsplash-1280x1024.cfg, cfg/bootsplash-800x600.cfg: Remove
+	  non Mandrake's theme
+
+2002-03-06 16:36  David Baudens <baudens@mandrakesoft.com>
+
+	* themes/data/Ayo/: images/bootsplash-1024x768.jpg,
+	  images/bootsplash-1280x1024.jpg, images/bootsplash-800x600.jpg,
+	  lilo/message: Remove non Mandrake's theme
+
+2002-03-06 16:33  David Baudens <baudens@mandrakesoft.com>
+
+	* bootsplash.spec: Update spec
+
+2002-03-02 17:12  Warly <warly@mandrakesoft.com>
+
+	* themes/config/Mandrake/global.config: forget to add
+	  themes/config/Mandrake/global.config
+
+2002-03-02 17:10  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg: configure
+	  1280x1024
+
+2002-03-01 22:26  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, scripts/make-boot-splash,
+	  themes/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/config/Ayo/global.config,
+	  themes/config/Ayo/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Ayo/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Ayo/cfg/bootsplash-800x600.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/config/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/data/Ayo/images/bootsplash-1024x768.jpg,
+	  themes/data/Ayo/images/bootsplash-1280x1024.jpg,
+	  themes/data/Ayo/images/bootsplash-800x600.jpg,
+	  themes/data/Ayo/lilo/message,
+	  themes/data/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/data/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/data/Mandrake/images/bootsplash-800x600.jpg,
+	  themes/data/Mandrake/lilo/message: move config to /etc so that
+	  rc.sysinit see them update Mandrake themes images and config
+
+2002-02-26 17:38  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: fb binaries makes it not noarch any more
+
+2002-02-26 17:35  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, fb/Makefile: add localrpm in Makefile
+	  add check in fb Makefile
+
+2002-02-26 14:14  Warly <warly@mandrakesoft.com>
+
+	* fb/Makefile: forget a check entry
+
+2002-02-26 14:08  Warly <warly@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec,
+	  themes/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/Mandrake/cfg/bootsplash-800x600.cfg: added progress bar
+	  coordinate for Mandrake theme
+
+2002-02-26 14:03  Warly <warly@mandrakesoft.com>
+
+	* fb/: Makefile, fbresolution.c, progress.c: added fb tools:
+	  fbresolution to detect current framebuffer resolution progress to
+	  display a colord rectangle in framebuffer
+
+2002-02-22 15:10  Warly <warly@mandrakesoft.com>
+
+	* bootsplash.spec: 1.3.2
+
+2002-02-22 15:08  Warly <warly@mandrakesoft.com>
+
+	* themes/Mandrake/: cfg/bootsplash-1024x768.cfg,
+	  cfg/bootsplash-1280x1024.cfg, cfg/bootsplash-800x600.cfg,
+	  images/bootsplash-1024x768.jpg, images/bootsplash-1280x1024.jpg,
+	  images/bootsplash-800x600.jpg: add new images put the text in the
+	  right place
+
+2002-02-22 11:35  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* README: Upgrade README.
+
+2002-02-13 14:47  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.3.2-1mdk
+
+2002-02-13 14:13  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Fix Requires on mkinitrd.
+
+2002-02-13 14:13  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Update description with english words
+	  ASkwar@DigitalProjects.com.
+
+2002-02-12 15:26  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.3.1-1mdk
+
+2002-02-12 15:25  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/Makefile: Add switch-themes.
+
+2002-02-12 15:15  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Upgrade requires on mkinitrd.
+
+2002-02-12 15:14  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.3-1mdk
+
+2002-02-12 15:13  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/make-boot-splash, scripts/switch-themes,
+	  themes/Mandrake/lilo/message: Add switch themes script, add
+	  support for lilo themes
+
+2002-02-12 13:10  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/detect-resolution: Remove the DURING_INSTALL, we get the
+	  vga from cmdline like the install does.
+
+2002-02-11 17:21  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.2-1mdk
+
+2002-02-11 17:19  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/detect-resolution: Exist if the config file doen't exist,
+	  don't get information from cmdline when we are during instal
+
+2002-02-11 16:07  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* themes/Mandrake/global.config: Add Ayo Themes
+
+2002-02-08 16:47  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.1-1mdk
+
+2002-02-08 16:46  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* Makefile: Don't changelog tmp/* files.
+
+2002-02-08 16:45  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, scripts/Makefile,
+	  scripts/bootsplash.sysconfig, scripts/make-boot-splash,
+	  themes/Mandrake/global.config,
+	  themes/Mandrake/cfg/bootsplash-1024x768.cfg,
+	  themes/Mandrake/cfg/bootsplash-1280x1024.cfg,
+	  themes/Mandrake/cfg/bootsplash-800x600.cfg,
+	  themes/Mandrake/images/bootsplash-1024x768.jpg,
+	  themes/Mandrake/images/bootsplash-1280x1024.jpg,
+	  themes/Mandrake/images/bootsplash-800x600.jpg: Add themes support
+
+2002-02-04 18:22  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: 1.0-1mdk
+
+2002-02-04 18:03  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* README: Upgrade README
+
+2002-02-04 18:02  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Add ChangeLog add some requires.
+
+2002-02-04 17:40  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/make-boot-splash: Fix argument parsing.
+
+2002-01-30 15:17  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/make-boot-splash: Allow to force resolition.
+
+2002-01-30 14:50  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Add Requires: /usr/bin/perl
+
+2002-01-30 14:48  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Add URL.
+
+2002-01-30 14:46  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* bootsplash.spec: Fix typo.
+
+2002-01-30 14:43  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* README, bootsplash.spec: Add small README.
+
+2002-01-30 14:37  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* Makefile, bootsplash.spec, scripts/Makefile: Add Makefile and
+	  .spec
+
+2002-01-30 14:16  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/: detect-resolution, make-boot-splash, rewritejpeg: First
+	  Import
+
+2002-01-30 14:16  Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+	* scripts/: detect-resolution, make-boot-splash, rewritejpeg:
+	  Initial revision
+

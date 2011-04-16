@@ -1,0 +1,57 @@
+#!/bin/sh
+# -*- Mode: shell-script -*-
+# Copyright (C) 2003 by Florent Villard <warly@mandrakesoft.com>
+# Redistribution of this file is permitted under the terms of the GNU 
+# Public License (GPL)
+#
+
+sysconfig=/etc/sysconfig/bootsplash
+
+function get_current_theme () {
+    local opt= theme=
+    while read opt ;do
+	[[ $opt != THEME=* ]] && continue
+	theme=${opt##*=}
+    done < $sysconfig
+    echo $theme
+}
+
+function remove_theme () {
+    tmpfile=$(mktemp /tmp/.bootsplash.XXXXXXX)
+    cp -f $sysconfig $tmpfile && rm -f $sysconfig
+    ok=
+    while read line;do
+	if [[ $line == SPLASH=* ]];then 
+	    echo "SPLASH=no" >> $sysconfig
+	    continue;
+	fi
+ 	if [[ $line == THEME=* ]];then 
+	    echo "THEME=" >> $sysconfig
+	    ok=yes
+	    continue;
+	fi
+	echo $line >> $sysconfig
+    done < $tmpfile
+    if [[ -z $ok ]];then
+	echo "THEME=" >> $sysconfig
+    fi
+    rm -f $tmpfile
+    rm -f /etc/bootsplash/current
+}
+
+function update_boot () {
+    if [[ -x /usr/sbin/bootloader-config ]]; then 
+        /usr/sbin/bootloader-config --action remove-splash --kernel-version $(uname -r)
+    fi 
+}
+
+theme_to_remove=$1
+current_theme=$(get_current_theme)
+if [ -z "$theme_to_remove" -o "$theme_to_remove" = "$current_theme" ]; then
+    echo Removing $current_theme theme
+    remove_theme
+    update_boot
+else
+    echo $theme_to_remove is not current theme, skipping
+    exit 0
+fi

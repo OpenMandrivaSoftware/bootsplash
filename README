@@ -1,0 +1,68 @@
+Bootsplash
+==========
+
+This the Bootsplash package for Mageia.
+
+The images are stored in initrd and loaded by the kernel at the initrd
+loading.
+
+You can configure some stuff via /etc/sysconfig/bootsplash
+the option are :
+
+# Specify here if you want add the splash logo to initrd when
+# generating an initrd. You can specify :
+#
+# SPLASH=no to don't have a splash screen
+#
+# SPLASH=auto to make autodetect the splash screen
+# 
+# SPLASH=INT When Integer could be 800x600 1024x768 1280x1024
+#
+SPLASH=auto
+
+# Choose the themes. The should be based in 
+# /usr/share/bootsplash/themes/
+THEME=Mageia-Default
+
+# Say yes here if you want to leave the logo on the console.
+# Three options :
+#
+# LOGO_CONSOLE=no don't display logo under console.
+#
+# LOGO_CONSOLE=yes display logo under console.
+#
+# LOGO_CONSOLE=theme leave the theme to decide.
+#
+LOGO_CONSOLE=theme
+
+The config how the text are aligned is in the cfg files of the theme.
+
+You can switch theme by using the command :
+
+/usr/share/bootsplash/scripts/switch-themes THEME_NAME
+
+To create a theme simply copy one default theme change the .jpg of
+images/ directory adjust the .cfg files and generate a lilo image with
+the bmp2mdk script of the lilo package (ask: fpons@mandrakesoft.com)
+for more information about this).
+
+Some stuff here has been inspired from what SuSe does (kudos to Suse).
+
+LILO boot images
+================
+
+Lilo boot image are generated with the bmp2mdk script that can be found
+in lilo package.
+
+The command to generate the message file looks like:
+
+./bmp2mdk mode:0x101 timer:63+280,80+358,64+83,64+119 entry:63+144,80+70,64+84,64+119,9,42 clear:480,640,64+119 pos:63,80 progress:0x15e,0x97,0xa,0xe < installboot82-eus.bmp > boot.msg
+
+or
+
+./bmp2mdk mode:0x101 clear:480,640,64+119 pos:63,80 progress:0x15e,0x97,0x0a,0x0e,64+59 < installboot82-eus.bmp > boot.msg
+
+the +119 value must be adapted to the given color palette for the picture used.
+
+
+Chmouel Boudjnah <chmouel@mandrakesoft.com> - Warly <warly@mandrakesoft.com>

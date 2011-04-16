@@ -1,0 +1,152 @@
+#!/bin/sh
+# -*- Mode: shell-script -*-
+# Copyright (C) 2002 by Chmouel Boudjnah <chmouel@mandrakesoft.com>
+# Redistribution of this file is permitted under the terms of the GNU 
+# Public License (GPL)
+# 	$Id: switch-themes 261681 2009-10-12 10:16:06Z fcrozat $	
+
+plymouthdir=/usr/share/plymouth
+sysconfig=/etc/sysconfig/bootsplash
+bootdir=/boot
+
+function list_available_themes () {
+    local basename=
+    for i in $plymouthdir/themes/*;do
+	basename=${i##*/}
+	echo $basename
+    done
+}
+
+function get_current_theme () {
+    local opt= theme=
+    while read opt ;do
+	[[ $opt != THEME=* ]] && continue
+	theme=${opt##*=}
+    done < $sysconfig
+    echo $theme
+}
+
+function read_link () {
+    perl -e '{print readlink shift, "\n"}' $1
+}
+
+function grub_switch_themes () {
+    if [ -x /usr/sbin/grub-gfxmenu ]; then
+	/usr/sbin/grub-gfxmenu --update-theme
+    fi
+}
+
+function check_it () {
+    local theme=$1
+    local ok= c=
+
+    for c in $(list_available_themes);do
+	[[ $c == $theme ]] && ok=yes
+    done
+    if [[ -z $ok ]];then
+	echo -e "Themes $theme doen't exist\n";
+	bash $0 -l
+	exit;
+    fi
+}
+
+function update () {
+    local theme=$1;
+
+    rm -f /usr/share/gfxboot/themes/current
+    ln -s $theme /usr/share/gfxboot/themes/current
+
+    if [[ -z $update ]]; then
+	    /usr/sbin/plymouth-set-default-theme $theme
+    fi
+
+    [ -f /usr/lib/libDrakX/Xconfig/resolution_and_depth.pm ] && perl -I/usr/lib/libDrakX  -MXconfig::xfree -MXconfig::resolution_and_depth -e 'Xconfig::resolution_and_depth::set_default_background(Xconfig::xfree->read->get_resolution)' 
+
+
+}
+
+function switch_theme () {
+    local toswitch=$1
+    local current_theme=$(get_current_theme)
+    local ok= c=
+
+    #Seeding
+    if [[ $current_theme != $toswitch ]];then
+	ok=
+	tmpfile=$(mktemp /tmp/.bootsplash.XXXXXXX)
+	cp -f $sysconfig $tmpfile && rm -f $sysconfig
+	while read line;do
+	    if [[ $line == SPLASH=* ]];then 
+		echo "SPLASH=auto" >> $sysconfig
+		continue;
+	    fi
+	    if [[ $line == THEME=* ]];then 
+		echo "THEME=$toswitch" >> $sysconfig
+		ok=yes
+		continue;
+	    fi
+	    echo $line >> $sysconfig
+	done < $tmpfile
+	if [[ -z $ok ]];then
+	    echo "THEME=$toswitch" >> $sysconfig
+	fi
+	rm -f $tmpfile
+    fi
+    update $toswitch
+    grub_switch_themes $toswitch
+}
+
+function update_boot () {
+    if [[ -x /usr/sbin/bootloader-config ]]; then 
+        /usr/sbin/bootloader-config --action update-splash
+    fi 
+}
+
+function usage () {
+    basename=`basename $0`
+    cat <<EOF
+     $basename OPTIONS THEMES
+
+OPTIONS:
+       -c:  Tell you the current themes
+       -l:  List themes available.
+       -u:  Update current theme.
+EOF
+    exit 1
+}
+    
+update=
+while getopts uhlc opt;do
+  case "$opt" in
+      u) 
+	  update=yes ;;
+      c) 
+	  echo -n "The current theme is: ";get_current_theme; exit;;
+      l) 
+	  echo "Available themes are :"
+	  for i in $(list_available_themes);do echo -e "\t\t\t$i";done;
+	  exit;
+	  ;;
+      h) usage;;
+      *) usage;;
+  esac
+done
+shift $((OPTIND - 1))
+
+theme=$1
+
+if [[ -n $update ]];then
+    if [[ -n $theme ]];then
+	echo "No argument when updating";
+	echo
+	usage
+    fi
+    update $(get_current_theme)
+    exit;
+fi
+
+[[ -z $theme ]] &&  usage;
+
+check_it $theme
+switch_theme $theme
+update_boot

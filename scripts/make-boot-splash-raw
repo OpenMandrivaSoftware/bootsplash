@@ -1,0 +1,52 @@
+#!/bin/sh
+# -*- Mode: shell-script -*-
+# Copyright (C) 2002 by Chmouel Boudjnah <chmouel@mandrakesoft.com>
+# Redistribution of this file is permitted under the terms of the GNU 
+# Public License (GPL)
+# $Id: make-boot-splash-raw 263874 2009-11-30 18:28:33Z pterjan $
+
+: ${splash_dir=/usr/share/bootsplash}
+
+[ $# = 2 ] || { echo "usage: $0 <initrd> <theme>"; exit 1; }
+
+initrd_file=$1
+THEME=$2
+
+# warly: we cannot use file command which is in /usr/bin/
+# initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
+
+if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
+    tmp_dir=`mktemp -d`
+    /bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
+    if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
+	mkdir $tmp_dir/plymouth
+	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth
+
+	cd $tmp_dir/plymouth
+
+	# Avoid duplicate files, adding another copy of glibc each time makes
+	# initrd grow fast
+	/bin/zcat $initrd_file 2> /dev/null | \
+	cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
+	sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd
+
+	/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
+	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null
+    fi
+    gzip -9 -c $tmp_dir/initrd > $initrd_file
+    rm -rf $tmp_dir 
+else 
+    $splash_dir/scripts/remove-boot-splash $initrd_file
+
+    if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
+	tmp_initrd=`mktemp`
+	tmp_dir=`mktemp -d`
+	gzip -dc $initrd_file > $tmp_initrd 2> /dev/null
+	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null
+	rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
+	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
+	umount $tmp_dir 2>/dev/null
+	gzip -9 -c $tmp_initrd > $initrd_file 2>/dev/null
+	rm -f $tmp_initrd
+    fi
+fi
