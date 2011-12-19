@@ -21,6 +21,10 @@ if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
 	/bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
 	mkdir $tmp_dir/plymouth
 	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth
+	if [ $? -ne 0 ]; then
+	    rm -rf $tmp_dir
+	    exit 1
+	fi
 
 	cd $tmp_dir/plymouth
 
@@ -45,7 +49,12 @@ else
 	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null
 	rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
 	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
+	rc=$?
 	umount $tmp_dir 2>/dev/null
+	if [ $rc -ne 0 ]; then
+	    rm -f $tmp_initrd
+	    exit 1
+	fi
 	gzip -9 -c $tmp_initrd > $initrd_file 2>/dev/null
 	rm -f $tmp_initrd
     fi
