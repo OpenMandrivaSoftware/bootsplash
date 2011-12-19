@@ -16,9 +16,9 @@ THEME=$2
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
 if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
-    tmp_dir=`mktemp -d`
-    /bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
+	tmp_dir=`mktemp -d`
+	/bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
 	mkdir $tmp_dir/plymouth
 	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth
 
@@ -32,9 +32,9 @@ if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
 
 	/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
 	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null
+	gzip -9 -c $tmp_dir/initrd > $initrd_file
+	rm -rf $tmp_dir
     fi
-    gzip -9 -c $tmp_dir/initrd > $initrd_file
-    rm -rf $tmp_dir 
 else 
     $splash_dir/scripts/remove-boot-splash $initrd_file
 
