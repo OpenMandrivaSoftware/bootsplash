@@ -2,9 +2,6 @@
 
 @ARGV == 1 or die "usage: remove-splash <initrd>\n";
 
-my $magic = 'BOOTSPL3';
-my $buffer_size = 15;
-
 my ($initrd) = @ARGV;
 
 # FIXME it must have a clear way to do that in perl
@@ -24,29 +21,4 @@ if (!system("/bin/zcat $initrd 2> /dev/null | /bin/cpio -t &> /dev/null")) {
     exit
 }
 
-open(my $F, "+< $initrd") or die "can't open $initrd: $!\n";
-
-while (1) {
-    my $got = read($F, my $buffer, $buffer_size);
-    $got > length($magic) or last;
-
-    my $index = index($buffer, $magic);
-    if ($index >= 0) {
-	my $offset = $index + tell($F) - $got;
-
-	seek($F, $offset + 12, 0) && read($F, my $tmp, 4) or last;
-	my $splash_size = unpack("V", $tmp) + 38;
-
-	my $initrd_size = seek($F, 0, 2) && tell($F);
-	
-	if ($offset + $splash_size == $initrd_size) {
-	    truncate($F, $offset);
-	    exit 0;
-	} else {
-	    warn "bootsplash found at offset $offset, but it is not at the end ($offset + $splash_size != $initrd_size)\n";
-	}
-    }
-    seek($F, -length($magic), 1); # handle the case BOOTSPL3 when overlaps between buffers
-}
-
-warn "bootsplash not found in $initrd\n";
+warn "remove-splash: format of $initrd not recognized\n";
