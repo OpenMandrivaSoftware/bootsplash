@@ -12,32 +12,43 @@
 initrd_file=$1
 THEME=$2
 
+tmp_dir=
+tmp_initrd=
+
+clean_tmp() {
+    [ -n "$tmp_initrd" ] && rm -f "$tmp_initrd"
+    [ -n "$tmp_dir" ] && rm -rf "$tmp_dir"
+    rm -f "$initrd_file.tmp"
+    return 0
+}
+
+clean_and_fail() {
+    clean_tmp
+    exit 1
+}
+
 # warly: we cannot use file command which is in /usr/bin/
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
 if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
 	tmp_dir=`mktemp -d`
-	/bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
+	[ -n "$tmp_dir" ] || clean_and_fail
+	/bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd || clean_and_fail
 	mkdir $tmp_dir/plymouth
-	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth
-	if [ $? -ne 0 ]; then
-	    rm -rf $tmp_dir
-	    exit 1
-	fi
-
-	cd $tmp_dir/plymouth
+	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth || clean_and_fail
+	cd $tmp_dir/plymouth || clean_and_fail
 
 	# Avoid duplicate files, adding another copy of glibc each time makes
 	# initrd grow fast
 	/bin/zcat $initrd_file 2> /dev/null | \
 	cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
-	sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd
+	sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd || clean_and_fail
 
 	/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
-	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null
-	gzip -9 -c $tmp_dir/initrd > $initrd_file
-	rm -rf $tmp_dir
+	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null || clean_and_fail
+	gzip -9 -c $tmp_dir/initrd > $initrd_file.tmp || clean_and_fail
+	mv -f $initrd_file.tmp $initrd_file
     fi
 else 
     $splash_dir/scripts/remove-boot-splash $initrd_file
@@ -45,17 +56,17 @@ else
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
 	tmp_initrd=`mktemp`
 	tmp_dir=`mktemp -d`
-	gzip -dc $initrd_file > $tmp_initrd 2> /dev/null
-	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null
+	[ -n "$tmp_dir" ] && [ -n "$tmp_initrd" ] || clean_and_fail
+	gzip -dc $initrd_file > $tmp_initrd 2> /dev/null || clean_and_fail
+	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null || clean_and_fail
 	rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
 	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
 	rc=$?
 	umount $tmp_dir 2>/dev/null
-	if [ $rc -ne 0 ]; then
-	    rm -f $tmp_initrd
-	    exit 1
-	fi
-	gzip -9 -c $tmp_initrd > $initrd_file 2>/dev/null
-	rm -f $tmp_initrd
+	[ $rc -ne 0 ] && clean_and_fail
+	gzip -9 -c $tmp_initrd > $initrd_file.tmp 2>/dev/null || clean_and_fail
+	mv -f $initrd_file.tmp $initrd_file
     fi
 fi
+
+clean_tmp
