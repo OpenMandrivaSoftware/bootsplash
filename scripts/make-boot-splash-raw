@@ -27,6 +27,8 @@ clean_and_fail() {
     exit 1
 }
 
+initrd_file="$(readlink -f "$initrd_file")"
+
 # warly: we cannot use file command which is in /usr/bin/
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
