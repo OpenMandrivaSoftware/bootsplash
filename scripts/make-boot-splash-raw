@@ -32,24 +32,20 @@ initrd_file="$(readlink -f "$initrd_file")"
 # warly: we cannot use file command which is in /usr/bin/
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
-if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
+if ( /bin/zcat $initrd_file 2> /dev/null | /bin/cpio -it &> /dev/null ); then
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
 	tmp_dir=`mktemp -d`
 	[ -n "$tmp_dir" ] || clean_and_fail
+
 	mkdir $tmp_dir/plymouth
-	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth || clean_and_fail
 	cd $tmp_dir/plymouth || clean_and_fail
+	/bin/zcat $initrd_file | /bin/cpio -id --quiet || clean_and_fail
+	/usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
 
-	# Avoid duplicate files, adding another copy of glibc each time makes
-	# initrd grow fast
-	/bin/zcat $initrd_file 2> /dev/null | \
-		cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
-		sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd || clean_and_fail
-
-	/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
-	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null || clean_and_fail
-	gzip -9 -c $tmp_dir/initrd > $initrd_file.tmp || clean_and_fail
-	mv -f $initrd_file.tmp $initrd_file
+	/bin/find . | \
+		cpio -R 0:0 -H newc -o --quiet | \
+		gzip -9 > $tmp_dir/initrd  || clean_and_fail
+	mv -f $tmp_dir/initrd $initrd_file
     fi
 else 
     $splash_dir/scripts/remove-boot-splash $initrd_file
