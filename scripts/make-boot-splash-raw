@@ -32,22 +32,33 @@ initrd_file="$(readlink -f "$initrd_file")"
 # warly: we cannot use file command which is in /usr/bin/
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
-if ( /bin/zcat $initrd_file 2> /dev/null | /bin/cpio -it &> /dev/null ); then
+CPIO=
+[ -z "$CPIO" ] && zcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=gz
+[ -z "$CPIO" ] && xzcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=xz
+
+if [ -n "$CPIO" ]; then
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
 	tmp_dir=`mktemp -d`
 	[ -n "$tmp_dir" ] || clean_and_fail
 
+	EXTRACT=zcat
+	COMPRESS="gzip -9"
+	if [ "xz" = "$CPIO" ]; then
+		EXTRACT=xzcat
+		COMPRESS="xz --check=crc32 --lzma2=dict=1MiB"
+	fi
+
 	mkdir $tmp_dir/plymouth
 	cd $tmp_dir/plymouth || clean_and_fail
-	/bin/zcat $initrd_file | /bin/cpio -id --quiet || clean_and_fail
+	$EXTRACT $initrd_file | cpio -id --quiet || clean_and_fail
 
 	# If the theme has changed, we should remove the old one first to save space
 	rm -rf $tmp_dir/plymouth/usr/share/plymouth/themes
 	PLYMOUTH_THEME_NAME=$THEME /usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
 
-	/bin/find . | \
+	find . | \
 		cpio -R 0:0 -H newc -o --quiet | \
-		gzip -9 > $tmp_dir/initrd  || clean_and_fail
+		$COMPRESS > $tmp_dir/initrd  || clean_and_fail
 	mv -f $tmp_dir/initrd $initrd_file
     fi
 else 
