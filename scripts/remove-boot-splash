@@ -1,24 +1,74 @@
-#!/usr/bin/perl
+#!/bin/sh
+# -*- Mode: shell-script -*-
+# Copyright (C) 2002 by Chmouel Boudjnah <chmouel@mandrakesoft.com>
+# Copyright (C) 2012 by Colin Guthrie <colin@mageia.org>
+# Redistribution of this file is permitted under the terms of the GNU 
+# Public License (GPL)
+# $Id$
 
-@ARGV == 1 or die "usage: remove-splash <initrd>\n";
+: ${splash_dir=/usr/share/bootsplash}
 
-my ($initrd) = @ARGV;
+[ $# = 1 ] || { echo "Usage: $0 <initrd>" >&2; exit 1; }
 
-# FIXME it must have a clear way to do that in perl
-if (!system("/bin/zcat $initrd 2> /dev/null | /bin/cpio -t &> /dev/null")) {
-    print STDERR "remove-boot-splash: initrd in initramfs format\n";
-    chomp(my $tmp_dir = `mktemp -d`);
-    chdir $tmp_dir;
-    system("/bin/zcat $initrd 2>/dev/null | /bin/cpio -id 2>/dev/null");
-    if (-d "$tmp_dir/usr/share/plymouth") {
-	system("rm -fr $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib/plymouth $tmp_dir/usr/lib/libply* $tmp_dir/lib/libply* $tmp_dir/bin/plymouthd $tmp_dir/bin/plymouth $tmp_dir/etc/splashy $tmp_dir/usr/share/splashy");
-	print STDERR "remove-boot-splash: removing plymouth from initrd\n";
-	system("/bin/find . -print | /bin/cpio --quiet -c -o 2> /dev/null | gzip -c > $initrd")
-    } else {
-	print STDERR "ERROR remove-boot-splash: plymouth not found in $initrd\n"
-    }
-    system("rm -rf $tmp_dir");
-    exit
+initrd_file=$1
+
+tmp_dir=
+
+clean_tmp() {
+    [ -n "$tmp_dir" ] && rm -rf "$tmp_dir"
+    return 0
 }
 
-warn "remove-splash: format of $initrd not recognized\n";
+clean_and_fail() {
+    clean_tmp
+    exit 1
+}
+
+initrd_file="$(readlink -f "$initrd_file")"
+
+CPIO=
+[ -z "$CPIO" ] && zcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=gz
+[ -z "$CPIO" ] && xzcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=xz
+
+
+if [ -z "$CPIO" ]; then
+  echo "remove-boot-splash: Format of $initrd_file not recognized" >&2
+  exit 1
+fi
+
+tmp_dir=`mktemp -d`
+[ -n "$tmp_dir" ] || clean_and_fail
+
+EXTRACT=zcat
+COMPRESS="gzip -9"
+if [ "xz" = "$CPIO" ]; then
+  EXTRACT=xzcat
+  COMPRESS="xz --check=crc32 --lzma2=dict=1MiB"
+fi
+
+mkdir $tmp_dir/plymouth
+cd $tmp_dir/plymouth || clean_and_fail
+$EXTRACT $initrd_file | cpio -id --quiet || clean_and_fail
+
+if [ ! -d $tmp_dir/plymouth/usr/share/plymouth ]; then
+  echo "remove-boot-splash: ERROR plymouth not found in $initrd_file" >&2
+  clean_and_fail
+fi
+
+echo "remove-boot-splash: Removing plymouth from initrd $initrd_file" >&2
+rm -rf \
+  $tmp_dir/plymouth/lib/dracut/hooks/*/*plymouth* \
+  $tmp_dir/plymouth/usr/share/plymouth \
+  $tmp_dir/plymouth/usr/lib*/plymouth \
+  $tmp_dir/plymouth/usr/lib*/libply* \
+  $tmp_dir/plymouth/lib*/libply* \
+  $tmp_dir/plymouth/bin/plymouthd \
+  $tmp_dir/plymouth/bin/plymouth \
+  $tmp_dir/plymouth/etc/plymouth \
+  $tmp_dir/plymouth/etc/splashy \
+  $tmp_dir/plymouth/usr/share/splashy
+
+find . | \
+  cpio -R 0:0 -H newc -o --quiet | \
+  $COMPRESS > $tmp_dir/initrd  || clean_and_fail
+mv -f $tmp_dir/initrd $initrd_file
