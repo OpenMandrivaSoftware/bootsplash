@@ -71,3 +71,5 @@ find . | \
   cpio -R 0:0 -H newc -o --quiet | \
   $COMPRESS > $tmp_dir/initrd  || clean_and_fail
 mv -f $tmp_dir/initrd $initrd_file
+
+clean_tmp
