@@ -36,7 +36,6 @@ if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
     if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
 	tmp_dir=`mktemp -d`
 	[ -n "$tmp_dir" ] || clean_and_fail
-	/bin/zcat $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd || clean_and_fail
 	mkdir $tmp_dir/plymouth
 	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth || clean_and_fail
 	cd $tmp_dir/plymouth || clean_and_fail
@@ -44,8 +43,8 @@ if `/bin/zcat $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
 	# Avoid duplicate files, adding another copy of glibc each time makes
 	# initrd grow fast
 	/bin/zcat $initrd_file 2> /dev/null | \
-	cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
-	sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd || clean_and_fail
+		cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
+		sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd || clean_and_fail
 
 	/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
 	sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null || clean_and_fail
