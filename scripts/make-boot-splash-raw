@@ -7,10 +7,9 @@
 
 : ${splash_dir=/usr/share/bootsplash}
 
-[ $# = 2 ] || { echo "usage: $0 <initrd> <theme>"; exit 1; }
+[ $# = 1 -o $# = 2 ] || { echo "usage: $0 <initrd>"; exit 1; }
 
 initrd_file=$1
-THEME=$2
 
 tmp_dir=
 tmp_initrd=
@@ -54,7 +53,7 @@ if [ -n "$CPIO" ]; then
 
 	# If the theme has changed, we should remove the old one first to save space
 	rm -rf $tmp_dir/plymouth/usr/share/plymouth/themes
-	PLYMOUTH_THEME_NAME=$THEME /usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
+	/usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
 
 	find . | \
 		cpio -R 0:0 -H newc -o --quiet | \
@@ -71,7 +70,7 @@ else
 	gzip -dc $initrd_file > $tmp_initrd 2> /dev/null || clean_and_fail
 	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null || clean_and_fail
 	rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
-	PLYMOUTH_THEME_NAME=$THEME /usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
+	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
 	rc=$?
 	umount $tmp_dir 2>/dev/null
 	[ $rc -ne 0 ] && clean_and_fail

@@ -17,7 +17,7 @@ resolution=$2
 
 plymouth-set-default-theme $THEME
 
-$splash_dir/scripts/make-boot-splash-raw $initrd_file $THEME || exit 1
+$splash_dir/scripts/make-boot-splash-raw $initrd_file || exit 1
     
 if [ -z "$DURING_INSTALL" ]; then
     $splash_dir/scripts/switch-themes -u
