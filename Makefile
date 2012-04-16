@@ -32,7 +32,7 @@ dist:
 dist-svn:
 	rm -rf $(NAME)-$(VERSION)
 	svn export -q -rBASE . $(NAME)-$(VERSION)
-	tar Jcf ../$(NAME)-$(VERSION).tar.xz $(NAME)-$(VERSION)
+	tar caf ../$(NAME)-$(VERSION).tar.xz $(NAME)-$(VERSION)
 	rm -rf $(NAME)-$(VERSION)
 
 dist-git:
