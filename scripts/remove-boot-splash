@@ -67,6 +67,7 @@ rm -rf \
   $tmp_dir/plymouth/etc/splashy \
   $tmp_dir/plymouth/usr/share/splashy
 
+umask 077
 find . | \
   cpio -R 0:0 -H newc -o --quiet | \
   $COMPRESS > $tmp_dir/initrd  || clean_and_fail

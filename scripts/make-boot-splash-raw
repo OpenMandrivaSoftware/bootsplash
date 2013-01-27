@@ -55,6 +55,7 @@ if [ -n "$CPIO" ]; then
 	rm -rf $tmp_dir/plymouth/usr/share/plymouth/themes
 	/usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
 
+	umask 077
 	find . | \
 		cpio -R 0:0 -H newc -o --quiet | \
 		$COMPRESS > $tmp_dir/initrd  || clean_and_fail
@@ -74,6 +75,7 @@ else
 	rc=$?
 	umount $tmp_dir 2>/dev/null
 	[ $rc -ne 0 ] && clean_and_fail
+	umask 077
 	gzip -9 -c $tmp_initrd > $initrd_file.tmp 2>/dev/null || clean_and_fail
 	mv -f $initrd_file.tmp $initrd_file
     fi
