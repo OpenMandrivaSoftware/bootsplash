@@ -1,5 +1,5 @@
 NAME=bootsplash
-VERSION := 3.3.10
+VERSION := 3.3.11
 
 SUBDIRS=scripts
 FILES=$(SUBDIRS) Makefile ChangeLog README
