@@ -60,9 +60,7 @@ function update () {
 	    /usr/sbin/plymouth-set-default-theme $theme
     fi
 
-    [ -f /usr/lib/libDrakX/Xconfig/resolution_and_depth.pm ] && perl -I/usr/lib/libDrakX  -MXconfig::xfree -MXconfig::resolution_and_depth -e 'Xconfig::resolution_and_depth::set_default_background(Xconfig::xfree->read->get_resolution)' 
-
-
+    [ -x /usr/sbin/drakx-update-background ] && /usr/sbin/drakx-update-background
 }
 
 function switch_theme () {
