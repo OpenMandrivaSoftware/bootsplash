@@ -8,7 +8,7 @@
 : ${splash_dir=/usr/share/bootsplash}
 
 [[ -f /etc/sysconfig/bootsplash ]] && source /etc/sysconfig/bootsplash
-[[ -z $THEME ]] && THEME=Mageia-Default
+[[ -z $THEME ]] && THEME=OpenMandriva
 
 [ $# = 2 ] || { echo "usage: $0 <initrd> <resolution>"; exit 1; }
 
