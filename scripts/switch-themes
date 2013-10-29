@@ -31,12 +31,6 @@ function read_link () {
     perl -e '{print readlink shift, "\n"}' $1
 }
 
-function grub_switch_themes () {
-    if [ -x /usr/sbin/grub-gfxmenu ]; then
-	/usr/sbin/grub-gfxmenu --update-theme
-    fi
-}
-
 function check_it () {
     local theme=$1
     local ok= c=
@@ -53,9 +47,6 @@ function check_it () {
 
 function update () {
     local theme=$1;
-
-    rm -f /usr/share/gfxboot/themes/current
-    ln -s $theme /usr/share/gfxboot/themes/current
 
     if [[ -z $update ]]; then
 	    /usr/sbin/plymouth-set-default-theme $theme
@@ -94,7 +85,6 @@ function switch_theme () {
 	rm -f $tmpfile
     fi
     update $toswitch
-    grub_switch_themes $toswitch
 }
 
 function update_boot () {
