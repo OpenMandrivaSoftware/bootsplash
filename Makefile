@@ -30,7 +30,7 @@ dist:
 		echo "Unknown SCM (not SVN nor GIT)";\
 		exit 1; \
 	fi;
-	$(info $(NAME)-$(VERSION).tar.bz2 is ready)
+	$(info $(NAME)-$(VERSION).tar.xz is ready)
 
 dist-svn:
 	rm -rf $(NAME)-$(VERSION)
@@ -39,7 +39,7 @@ dist-svn:
 	rm -rf $(NAME)-$(VERSION)
 
 dist-git:
-	@git archive --prefix=$(NAME)-$(VERSION)/ HEAD | bzip2 >../$(NAME)-$(VERSION).tar.bz2;
+	@git archive --prefix=$(NAME)-$(VERSION)/ HEAD | xz >../$(NAME)-$(VERSION).tar.bz2;
 
 clean:
 	@for i in $(SUBDIRS);do	make -C $$i clean;done
