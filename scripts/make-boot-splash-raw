@@ -3,82 +3,78 @@
 # Copyright (C) 2002 by Chmouel Boudjnah <chmouel@mandrakesoft.com>
 # Redistribution of this file is permitted under the terms of the GNU 
 # Public License (GPL)
-# $Id: make-boot-splash-raw 263874 2009-11-30 18:28:33Z pterjan $
+# $Id$
 
 : ${splash_dir=/usr/share/bootsplash}
 
-[ $# = 1 -o $# = 2 ] || { echo "usage: $0 <initrd>"; exit 1; }
+[ $# = 2 ] || { echo "usage: $0 <initrd> <theme>"; exit 1; }
 
 initrd_file=$1
-
-tmp_dir=
-tmp_initrd=
-
-clean_tmp() {
-    [ -n "$tmp_initrd" ] && rm -f "$tmp_initrd"
-    [ -n "$tmp_dir" ] && rm -rf "$tmp_dir"
-    rm -f "$initrd_file.tmp"
-    return 0
-}
-
-clean_and_fail() {
-    clean_tmp
-    exit 1
-}
-
-initrd_file="$(readlink -f "$initrd_file")"
+THEME=$2
 
 # warly: we cannot use file command which is in /usr/bin/
 # initrd_type=`zcat /boot/initrd-2.6.14-2mdk.ramfs.img | file -`
 
-CPIO=
-[ -z "$CPIO" ] && zcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=gz
-[ -z "$CPIO" ] && xzcat $initrd_file 2>/dev/null | cpio -it --quiet &>/dev/null && CPIO=xz
+OLD_INITRD=true
+for COMPRESSION in xz bz z uncompressed; do
+	case $COMPRESSION in
+	xz)
+		DECOMPRESS=/usr/bin/xzcat
+		COMPRESS="/usr/bin/xz -9e"
+		;;
+	bz)
+		DECOMPRESS=/usr/bin/bzcat
+		COMPRESS="/usr/bin/bzip2 -9"
+		;;
+	z)
+		DECOMPRESS=/bin/zcat
+		COMPRESS="/bin/gzip -9"
+		;;
+	uncompressed)
+		DECOMPRESS=/bin/cat
+		COMPRESS=/bin/cat
+		;;
+	*)
+		echo "ERROR: Unknown compression $COMPRESSION requested"
+		exit 1
+		;;
+	esac
+	if `$DECOMPRESS $initrd_file 2> /dev/null | /bin/cpio -t &> /dev/null`; then
+		tmp_dir=`mktemp -d`
+		$DECOMPRESS $initrd_file 2> /dev/null | cpio-filter --exclude 'usr/share/plymouth|usr/lib/plymouth|usr/lib64/plymouth|bin/plymouth|lib/libply|usr/lib/libply|lib64/libply|usr/lib64/libply' > $tmp_dir/initrd
+		if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
+			mkdir $tmp_dir/plymouth
+			/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir/plymouth
 
-if [ -n "$CPIO" ]; then
-    if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
-	tmp_dir=`mktemp -d`
-	[ -n "$tmp_dir" ] || clean_and_fail
+			cd $tmp_dir/plymouth
 
-	EXTRACT=zcat
-	COMPRESS="gzip -9"
-	if [ "xz" = "$CPIO" ]; then
-		EXTRACT=xzcat
-		COMPRESS="xz --check=crc32 --lzma2=dict=1MiB"
+			# Avoid duplicate files, adding another copy of glibc each time makes
+			# initrd grow fast
+			$DECOMPRESS $initrd_file 2> /dev/null | \
+			cpio-filter --exclude `/bin/find . -type f -print | sed -e 's,\./,,g' | \
+			sed -e 's,^\.$,,' | tr '\n' '|' | sed -e 's/|$//'` > $tmp_dir/initrd
+
+			/bin/find . -print | sed -e 's,\./,,g' | sed -e 's,^\.$,,' | \
+			sort -u | cpio -o -c --quiet -O $tmp_dir/initrd --append 2>/dev/null
+		fi
+		$COMPRESS -c $tmp_dir/initrd > $initrd_file
+		rm -rf $tmp_dir 
+		OLD_INITRD=false
+		break
 	fi
+done
+if $OLD_INITRD; then
+	$splash_dir/scripts/remove-boot-splash $initrd_file
 
-	mkdir $tmp_dir/plymouth
-	cd $tmp_dir/plymouth || clean_and_fail
-	$EXTRACT $initrd_file | cpio -id --quiet || clean_and_fail
-
-	# If the theme has changed, we should remove the old one first to save space
-	rm -rf $tmp_dir/plymouth/usr/share/plymouth/themes
-	/usr/libexec/plymouth/plymouth-populate-initrd -t . || clean_and_fail
-
-	umask 077
-	find . | \
-		cpio -R 0:0 -H newc -o --quiet | \
-		$COMPRESS > $tmp_dir/initrd  || clean_and_fail
-	mv -f $tmp_dir/initrd $initrd_file
-    fi
-else 
-    $splash_dir/scripts/remove-boot-splash $initrd_file
-
-    if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
-	tmp_initrd=`mktemp`
-	tmp_dir=`mktemp -d`
-	[ -n "$tmp_dir" ] && [ -n "$tmp_initrd" ] || clean_and_fail
-	gzip -dc $initrd_file > $tmp_initrd 2> /dev/null || clean_and_fail
-	mount -o loop $tmp_initrd $tmp_dir 2> /dev/null || clean_and_fail
-	rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
-	/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
-	rc=$?
-	umount $tmp_dir 2>/dev/null
-	[ $rc -ne 0 ] && clean_and_fail
-	umask 077
-	gzip -9 -c $tmp_initrd > $initrd_file.tmp 2>/dev/null || clean_and_fail
-	mv -f $initrd_file.tmp $initrd_file
-    fi
+	if [ -x /usr/libexec/plymouth/plymouth-populate-initrd ]; then
+		tmp_initrd=`mktemp`
+		tmp_dir=`mktemp -d`
+		gzip -dc $initrd_file > $tmp_initrd 2> /dev/null
+		mount -o loop $tmp_initrd $tmp_dir 2> /dev/null
+		rm -rf $tmp_dir/usr/share/plymouth $tmp_dir/usr/lib*/plymouth
+		/usr/libexec/plymouth/plymouth-populate-initrd -t $tmp_dir
+		umount $tmp_dir 2>/dev/null
+		gzip -9 -c $tmp_initrd > $initrd_file 2>/dev/null
+		rm -f $tmp_initrd
+	fi
 fi
-
-clean_tmp

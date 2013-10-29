@@ -13,6 +13,7 @@ function get_current_theme () {
 	[[ $opt != THEME=* ]] && continue
 	theme=${opt##*=}
     done < $sysconfig
+    #[[ -z $theme ]] && theme="Mandriva"
     echo $theme
 }
 
@@ -46,6 +47,13 @@ function update_boot () {
 }
 
 theme_to_remove=$1
+if [ "$theme_to_remove" = Mandrakelinux ]; then
+    # in case we are upgrading mandrakelinux-theme to mandriva-theme
+    # "remove-theme Mandrakelinux" will be called thinking there is no theme anymore
+    grep -qi "THEME=Mandriva" $sysconfig && exit 0
+fi
+
+
 current_theme=$(get_current_theme)
 if [ -z "$theme_to_remove" -o "$theme_to_remove" = "$current_theme" ]; then
     echo Removing $current_theme theme

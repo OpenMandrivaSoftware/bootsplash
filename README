@@ -1,7 +1,7 @@
 Bootsplash
 ==========
 
-This the Bootsplash package for Mageia.
+This the Bootsplash package for Mandrake 8.2.
 
 The images are stored in initrd and loaded by the kernel at the initrd
 loading.
@@ -22,7 +22,7 @@ SPLASH=auto
 
 # Choose the themes. The should be based in 
 # /usr/share/bootsplash/themes/
-THEME=Mageia-Default
+THEME=Mandrake
 
 # Say yes here if you want to leave the logo on the console.
 # Three options :
@@ -52,7 +52,7 @@ LILO boot images
 ================
 
 Lilo boot image are generated with the bmp2mdk script that can be found
-in lilo package.
+in Mandrake Linux lilo package.
 
 The command to generate the message file looks like:
 
