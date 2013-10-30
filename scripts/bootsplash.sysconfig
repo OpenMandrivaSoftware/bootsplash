@@ -8,11 +8,11 @@
 # 
 # SPLASH=INT When Integer could be 800x600 1024x768 1280x1024 1600x1200
 #
-SPLASH=no
+SPLASH=auto
 
 # Choose the themes. The should be based in 
 # /usr/share/bootsplash/themes/
-THEME=
+THEME=OpenMandriva
 
 # Say yes here if you want to leave the logo on the console.
 # Three options :
