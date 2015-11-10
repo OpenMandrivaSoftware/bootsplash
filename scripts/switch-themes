@@ -28,7 +28,7 @@ function get_current_theme () {
 }
 
 function read_link () {
-    perl -e '{print readlink shift, "\n"}' $1
+    readlink $1
 }
 
 function check_it () {
