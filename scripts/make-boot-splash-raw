@@ -20,7 +20,7 @@ for COMPRESSION in xz bz z uncompressed; do
 	case $COMPRESSION in
 	xz)
 		DECOMPRESS=/usr/bin/xzcat
-		COMPRESS="/usr/bin/xz -9e"
+		COMPRESS="/usr/bin/xz --check=crc32"
 		;;
 	bz)
 		DECOMPRESS=/usr/bin/bzcat
