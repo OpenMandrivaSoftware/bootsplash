@@ -35,11 +35,11 @@ dist:
 dist-svn:
 	rm -rf $(NAME)-$(VERSION)
 	svn export -q -rBASE . $(NAME)-$(VERSION)
-	tar jcf ../$(NAME)-$(VERSION).tar.bz2 $(NAME)-$(VERSION)
+	tar Jcf ../$(NAME)-$(VERSION).tar.xz $(NAME)-$(VERSION)
 	rm -rf $(NAME)-$(VERSION)
 
 dist-git:
-	@git archive --prefix=$(NAME)-$(VERSION)/ HEAD | xz >../$(NAME)-$(VERSION).tar.bz2;
+	@git archive --prefix=$(NAME)-$(VERSION)/ HEAD | xz >../$(NAME)-$(VERSION).tar.xz;
 
 clean:
 	@for i in $(SUBDIRS);do	make -C $$i clean;done
